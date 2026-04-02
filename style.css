@@ -1,11 +1,14 @@
 :root {
     --primary: #111111;
-    --secondary: #666666;
-    --accent: #111111; /* Changed to black for premium feel, typical of luxury real estate */
-    --accent-hover: #333333;
-    --bg-light: #f8fafc;
+    --secondary: #555555;
+    --light-text: #777777;
+    --bg-light: #f9fafb;
+    --bg-gray: #f3f4f6;
     --white: #ffffff;
-    --border: #e2e8f0;
+    --border: #e5e7eb;
+    --border-focus: #111111;
+    --accent: #111111;
+    --accent-hover: #333333;
     --success: #10b981;
 }
 
@@ -15,74 +18,68 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: var(--primary);
     background-color: var(--white);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
-.split-layout {
-    display: flex;
-    min-height: 100vh;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* LEFT SIDE */
-.content-side {
-    flex: 1;
-    padding: 6rem 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-light {
     background-color: var(--bg-light);
-    position: relative;
-    overflow: hidden;
 }
 
-.content-side::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    /* High quality bright interior image */
-    background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
-    z-index: 0;
+.hidden {
+    display: none !important;
 }
 
-.content-side > * {
-    z-index: 1;
-    position: relative;
+.mt-2 {
+    margin-top: 1rem;
 }
 
-header .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 4rem;
-}
-
-.badge {
-    display: inline-block;
-    background: rgba(0, 0, 0, 0.05);
+/* Typography */
+h1, h2, h3, h4 {
     color: var(--primary);
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    line-height: 1.2;
+    font-weight: 700;
 }
 
-h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    letter-spacing: -0.03em;
-    font-weight: 700;
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
 }
 
 .highlight {
@@ -102,385 +99,387 @@ h1 {
     z-index: -1;
 }
 
-.subtitle {
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.btn-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Navbar */
+.site-header {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+}
+
+.site-header .logo {
     font-size: 1.5rem;
-    color: var(--secondary);
-    margin-bottom: 2rem;
-    font-weight: 400;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.description {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    max-width: 90%;
-    color: var(--primary);
+/* 1. Hero Section */
+.hero-section {
+    padding: 6rem 0;
 }
 
-.benefits {
+.hero-container {
     display: grid;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-}
-
-.benefit-item {
-    display: flex;
-    gap: 1.2rem;
-    align-items: flex-start;
-}
-
-.benefit-item .icon {
-    font-size: 1.2rem;
-    background: var(--white);
-    width: 45px;
-    height: 45px;
-    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
     align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    flex-shrink: 0;
 }
 
-.benefit-item strong {
-    display: block;
-    margin-bottom: 0.2rem;
-    font-size: 1.05rem;
-}
-
-.benefit-item p {
+.badge {
+    display: inline-block;
+    background: var(--bg-gray);
     color: var(--secondary);
-    font-size: 0.95rem;
-}
-
-.trust-badge {
-    margin-top: auto;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-.trust-badge p strong {
-    font-weight: 700;
-}
-
-.small-text {
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
     font-size: 0.85rem;
-    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.mt-2 { margin-top: 1rem; }
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
 
-/* RIGHT SIDE (FORM) */
-.form-side {
-    flex: 1;
-    padding: 4rem;
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-bottom: 2.5rem;
+}
+
+.hero-image img {
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
+}
+
+/* 2. Benefits Section */
+.benefits-section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.benefit-card {
+    padding: 2.5rem 2rem;
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card .icon {
+    font-size: 1.75rem;
+    width: 60px;
+    height: 60px;
+    background: var(--bg-light);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--white);
+    margin-bottom: 1.5rem;
 }
 
-.form-container {
-    width: 100%;
-    max-width: 480px;
+.benefit-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
 }
 
-.form-container h2 {
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    letter-spacing: -0.02em;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--bg-light);
-    border-radius: 2px;
-    margin-bottom: 2.5rem;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--accent);
-    width: 33.33%;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.form-step {
-    display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.form-step.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.form-step h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-}
-
-.step-desc {
+.benefit-card p {
     color: var(--secondary);
-    margin-bottom: 2rem;
     font-size: 0.95rem;
+}
+
+/* 3. Lead Form Section */
+.form-section {
+    padding: 8rem 0;
+}
+
+.form-container-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-card, .success-card {
+    background: var(--white);
+    padding: 4rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.form-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-microcopy {
+    color: var(--secondary);
+    margin-bottom: 2.5rem;
 }
 
 .input-group {
     margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--primary);
 }
 
 .input-group input {
     width: 100%;
-    padding: 1rem 1.2rem;
+    padding: 1rem 1.25rem;
     border: 1px solid var(--border);
     border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
-    transition: all 0.2s;
     background: var(--bg-light);
+    transition: all 0.2s ease;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--border-focus);
     background: var(--white);
     box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
 }
 
-button {
-    cursor: pointer;
-    font-family: inherit;
-    border: none;
-}
-
-.btn-next, .btn-submit, .btn-modal-cta {
+.btn-submit {
     width: 100%;
-    padding: 1.1rem;
-    background: var(--accent);
-    color: var(--white);
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 8px;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.btn-next:hover, .btn-submit:hover, .btn-modal-cta:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
+    padding: 1.25rem;
+    font-size: 1.125rem;
+    margin-top: 1rem;
 }
 
 .btn-submit:disabled {
     background: var(--secondary);
     cursor: not-allowed;
     transform: none;
-}
-
-.button-row {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.btn-prev {
-    padding: 1.1rem;
-    background: var(--bg-light);
-    color: var(--primary);
-    font-weight: 600;
-    border-radius: 8px;
-    transition: background 0.2s;
-    width: 30%;
-}
-
-.btn-prev:hover {
-    background: #e2e8f0;
-}
-
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.radio-card {
-    display: flex;
-    align-items: center;
-    padding: 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--white);
-}
-
-.radio-card:hover {
-    border-color: var(--secondary);
-}
-
-.radio-card input {
-    margin-right: 1.2rem;
-    width: 18px;
-    height: 18px;
-    accent-color: var(--accent);
-}
-
-.radio-card input:checked + span {
-    font-weight: 600;
+    box-shadow: none;
 }
 
 .secure-text {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--secondary);
     margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--light-text);
 }
 
 .success-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: rgba(16, 185, 129, 0.1);
     color: var(--success);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    margin: 0 auto 1.5rem;
+    font-size: 3rem;
+    margin: 0 auto 2rem;
 }
 
-#form-success {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-#form-success h3 {
-    font-size: 1.8rem;
+.success-card h2 {
     margin-bottom: 1rem;
 }
 
-#form-success p {
-    margin-bottom: 1rem;
-    color: var(--secondary);
-    font-size: 1.05rem;
-}
-
-/* Modal */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 100;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.modal-content {
-    background: var(--white);
-    padding: 4rem 3rem;
-    border-radius: 1rem;
-    max-width: 550px;
-    width: 90%;
-    position: relative;
-    text-align: center;
-    transform: translateY(20px) scale(0.95);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-}
-
-.modal-overlay.active .modal-content {
-    transform: translateY(0) scale(1);
-}
-
-.close-modal {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: rgba(0,0,0,0.05);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: var(--primary);
-    transition: background 0.2s;
-}
-
-.close-modal:hover {
-    background: rgba(0,0,0,0.1);
-}
-
-.modal-content h2 {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-    letter-spacing: -0.02em;
-}
-
-.modal-content p {
-    margin-bottom: 2.5rem;
+.success-card p {
     color: var(--secondary);
     font-size: 1.1rem;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .split-layout {
+.success-card .small-text {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+/* 4. Trust Section */
+.trust-section {
+    padding: 6rem 0;
+}
+
+.trust-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.trust-section h2 {
+    margin-bottom: 2rem;
+}
+
+.trust-lead {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.trust-lead strong {
+    color: var(--primary);
+}
+
+.trust-bullets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    text-align: left;
+}
+
+.trust-bullets li {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.check {
+    color: var(--success);
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* 5. Closing Section */
+.closing-section {
+    padding: 8rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.closing-section h2 {
+    font-size: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+.closing-section p {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-bottom: 3rem;
+}
+
+/* Footer */
+.site-footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-container {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .hero-section {
+        padding: 4rem 0;
+    }
+    
+    .hero-image {
+        order: -1; /* Puts image above text on mobile, very common */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .closing-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .benefits-grid {
+        gap: 1.5rem;
+    }
+    
+    .form-section, .closing-section, .trust-section {
+        padding: 5rem 0;
+    }
+    
+    .form-card, .success-card {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .trust-bullets {
         flex-direction: column;
-    }
-    
-    .content-side {
-        padding: 4rem 2rem;
-        min-height: 60vh;
-    }
-    
-    h1 {
-        font-size: 2.8rem;
-    }
-    
-    .form-side {
-        padding: 4rem 1.5rem;
-        background: var(--white);
-    }
-    
-    .form-container {
-        padding: 0;
-        box-shadow: none;
+        align-items: center;
+        gap: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content h1 {
         font-size: 2.2rem;
     }
     
-    .content-side {
-        padding: 3rem 1.5rem;
-    }
-    
-    .form-side {
-        padding: 3rem 1.5rem;
+    .btn-large {
+        width: 100%;
+        padding: 1.1rem;
     }
 }
