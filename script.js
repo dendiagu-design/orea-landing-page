@@ -1,3 +1,40 @@
+// Intersection Observer for Smooth Fade-up Animations
+const observerOptions = {
+    root: document.querySelector('.scroll-container'),
+    rootMargin: '0px',
+    threshold: 0.15 // Trigger when 15% of the element is visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+    // Select elements to animate
+    const elementsToAnimate = document.querySelectorAll('.hero-content, .hero-image img, .section-header, .benefit-card, .form-card, .trust-content, .closing-content h2, .closing-content p, .closing-content .btn');
+    
+    elementsToAnimate.forEach((el, index) => {
+        el.classList.add('fade-up');
+        
+        // Stagger animation delay slightly for grid items
+        if(el.classList.contains('benefit-card')) {
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+        }
+        
+        observer.observe(el);
+    });
+    
+    // Ensure first section triggers immediately
+    setTimeout(() => {
+        document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
+    }, 100);
+});
+
 // Smooth scrolling for Anchor Links
 document.querySelectorAll('.cta-scroll').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
