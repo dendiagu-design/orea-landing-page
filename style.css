@@ -208,6 +208,18 @@ h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); } 40% { transform: translate(-50%, -10px); } 60% { transform: translate(-50%, -5px); } }
 @keyframes scrollWheel { 0% { top: 6px; opacity: 1; } 100% { top: 18px; opacity: 0; } }
 
+.scroll-prompt-mobile {
+    display: none;
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    animation: bounce 2s infinite;
+}
+.scroll-prompt-mobile p { font-size: 0.9rem; font-weight: 600; color: var(--secondary); text-shadow: 0 2px 4px rgba(255,255,255,0.8); }
+
 @media (max-width: 1024px) {
     .problem-grid { grid-template-columns: 1fr 1fr; }
     .hero-container, .solution-grid, .form-wrapper { grid-template-columns: 1fr; gap: 2rem; }
@@ -218,6 +230,7 @@ h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
     body { overflow: auto; padding-bottom: 80px; } /* Space for sticky nav */
     .mobile-sticky-cta { display: block; }
     .hidden-mobile { display: none !important; }
+    .scroll-prompt-mobile { display: block; }
     
     .scroll-container { height: auto; overflow-y: visible; scroll-snap-type: none; }
     .snap-section { min-height: auto; scroll-snap-align: none; padding: 4rem 0; }

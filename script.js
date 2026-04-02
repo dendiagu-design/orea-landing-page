@@ -120,12 +120,9 @@ if (checklistForm) {
                     }
                 } catch(e) { console.error("Pixel tracking error", e); }
                 
-                // Reset button internally in case of refresh or modal reset
-                submitBtn.disabled = false;
-                submitBtn.innerText = originalText;
+                // 100% Optimized After-Submit Flow (Redirects to Thank You Page)
+                window.location.href = "thank-you.html";
                 
-                // Ensure viewport is correctly positioned if scrolled down
-                successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 300);
 
             /* Actual Fetch Request for GAS Integration (example)

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | OREA</title>
+    <!-- Basic Meta Pixel to track Thank You page Views -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      // fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+      // Potential tracking for 'CompleteRegistration'
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="overflow-y: auto; background-color: var(--bg-gray);">
+    
+    <header class="site-header" style="position: static; background: var(--white); border-bottom: 1px solid var(--border);">
+        <div class="container header-container" style="justify-content: center;">
+            <a href="index.html" class="logo-link">
+                <img src="logo.jpeg" alt="OREA Logo" class="header-logo" style="height: 48px;">
+            </a>
+        </div>
+    </header>
+
+    <div class="container mt-4 pt-2">
+        <div class="form-card fade-up visible" style="margin: 4rem auto; max-width: 650px; background: var(--white); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08);">
+            
+            <div class="success-icon" style="margin-bottom: 2rem;">✓</div>
+            
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--success);">You're In!</h1>
+            <p class="lead-text" style="margin-bottom: 2.5rem;">The Smart Seller Checklist has been successfully sent. Please check your inbox (and spam folder just in case) in the next 3-5 minutes.</p>
+            
+            <hr style="border: 0; border-top: 2px dashed var(--border); margin: 3rem 0;">
+            
+            <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem;">While You Wait...</h3>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem; color: var(--secondary);">Curious to know exactly how much you can save compared to an expensive traditional 3% agent commission?</p>
+            
+            <a href="https://wa.me/61000000000?text=Hi%20OREA%20Team!%20I%20just%20downloaded%20your%20seller%20checklist%20and%20want%20to%20know%20how%20much%20I%20can%20save%20on%20agent%20fees." class="btn btn-accent btn-large" style="width: 100%; font-size: 1.2rem; box-shadow: 0 10px 25px rgba(37,99,235,0.3);" target="_blank">
+                📱 Chat on WhatsApp to See Savings
+            </a>
+            
+            <p style="font-size: 0.9rem; color: var(--secondary); margin-top: 2rem;">Or return to our <a href="index.html" style="text-decoration: underline; color: var(--primary); font-weight: bold;">homepage</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>
