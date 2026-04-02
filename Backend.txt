@@ -1,0 +1,28 @@
+Untuk bagian Backend, karena ini terkait dengan akun Google Anda sendiri (Drive, Sheets, dan Gmail), setup-nya harus dilakukan dari sisi Anda.
+
+Tapi jangan khawatir, saya sudah merancangkan seluruh kode Backend-nya secara khusus untuk Anda! File logikanya baru saja saya buat di folder proyek Anda dengan nama 
+
+backend_gas.js
+. Buka file tersebut di Code Editor Anda (VS Code/Notepad), dan berikut cara memakainya:
+
+Cara Menghubungkan Form ke Email & Database:
+Buat Database Leads: Buka Google Sheets, buat spreadsheet baru dan beri judul (misal: "Leads OREA"). Biarkan sheet layarnya kosong.
+Buka Editor Kode Google Apps Script: Di dalam Google Sheet tersebut, klik menu Extensions > Apps Script (Ekstensi > Apps Script).
+Paste Kode Backend: Hapus kode bawaan yang ada di editor tersebut (biasanya function myFunction() {}), lalu Copy semua isi text dari file 
+
+backend_gas.js
+ yang saya buatkan, dan Paste ke editor Apps Script tersebut.
+Masukkan Link PDF Anda: Pada baris ke 16 di script tersebut, ganti tulisan "https://your-drive-link-here.pdf" dengan link Google Drive (yang di-set akses Anyone with the link) dari PDF Checklist asli Anda.
+Simpan dan Deploy:
+Klik logo Disket (Save / Ctrl+S).
+Di sudut kanan atas biru, klik Deploy > New deployment.
+Klik ikon gerigi (Select type) > Pilih Web app.
+Di bagian "Who has access", pastikan Anda ubah menjadi Anyone (sangat penting agar form publik bisa mengaksesnya).
+Klik Deploy dan izinkan akses (Authorize Access -> Advance -> Go to Script).
+Hubungkan Webhook-nya: Setelah selesai loading, Anda akan mendapatkan tautan panjang yang dinamakan "Web app URL". Copy URL tersebut. Buka file 
+
+script.js
+ yang kita bahas sebelumnya, lihat ke bagian form (sekitar baris 49), dan paste link tersebut ke dalam: const WEBHOOK_URL = 'PASTE_URL_DISINI';
+Selesai! Sekarang saat ada pengguna yang mem-posting data email mereka di halaman Landing Page, Google Sheet Anda otomatis akan terisi baris data baru, dan Gmail Anda secara otomatis akan langsung menembakkan email mewah (format HTML) berisi link PDF tersebut ke penggunanya.
+
+Apakah alurnya cukup jelas, atau ada kendala saat deploy? Silakan dicoba!

@@ -33,6 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
     }, 100);
+
+    // Mobile Sticky CTA hide logic when close to form
+    const formSection = document.getElementById('lead-form');
+    const stickyCta = document.getElementById('sticky-cta');
+    
+    if (formSection && stickyCta) {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    stickyCta.style.transform = 'translateY(150%)'; // hide off screen
+                } else {
+                    stickyCta.style.transform = 'translateY(0)'; // show it
+                }
+            });
+        }, { threshold: 0.1 });
+        ctaObserver.observe(formSection);
+    }
 });
 
 // Smooth scrolling for Anchor Links
@@ -94,6 +111,14 @@ if (checklistForm) {
                 void successCard.offsetWidth; 
                 
                 successCard.style.opacity = '1';
+
+                // Track Conversion Data for Meta Ads
+                try {
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Lead');
+                        console.log("Meta Pixel: 'Lead' event tracked successfully.");
+                    }
+                } catch(e) { console.error("Pixel tracking error", e); }
                 
                 // Reset button internally in case of refresh or modal reset
                 submitBtn.disabled = false;
