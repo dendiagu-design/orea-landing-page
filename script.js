@@ -65,11 +65,15 @@ document.querySelectorAll('.cta-scroll').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-            // Focus on the first input after scrolling
-            setTimeout(() => {
-                const nameInput = document.getElementById('fullName');
-                if (nameInput) nameInput.focus();
-            }, 800);
+            
+            // Focus on the first input ONLY if the target is the Lead Form
+            if (targetId === '#lead-form') {
+                setTimeout(() => {
+                    const nameInput = document.getElementById('fullName');
+                    // Prevent default browser jump mechanics to keep scroll extremely smooth
+                    if(nameInput) nameInput.focus({ preventScroll: true });
+                }, 800);
+            }
         }
     });
 });
