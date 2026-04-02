@@ -16,13 +16,13 @@ const observer = new IntersectionObserver((entries) => {
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', () => {
     // Select elements to animate
-    const elementsToAnimate = document.querySelectorAll('.hero-content, .hero-image img, .section-header, .benefit-card, .form-card, .trust-content, .closing-content h2, .closing-content p, .closing-content .btn');
+    const elementsToAnimate = document.querySelectorAll('.hero-content, .hero-image img, .section-header, .problem-card, .solution-image, .solution-content, .form-copy, .form-card, .testimonial-card, .closing-content h2, .closing-content .btn');
     
     elementsToAnimate.forEach((el, index) => {
         el.classList.add('fade-up');
         
         // Stagger animation delay slightly for grid items
-        if(el.classList.contains('benefit-card')) {
+        if(el.classList.contains('problem-card') || el.classList.contains('testimonial-card')) {
             el.style.transitionDelay = `${(index % 4) * 0.1}s`;
         }
         
