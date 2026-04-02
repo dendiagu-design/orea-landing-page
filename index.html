@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Seller's Checklist | OREA</title>
+    <meta name="description" content="Discover simple, low-cost improvements that can significantly increase your property’s value.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="split-layout">
+        <!-- Left Side: Content -->
+        <div class="content-side">
+            <header>
+                <div class="logo">OREA</div>
+            </header>
+            <main>
+                <span class="badge">Free Value-Boost Guide</span>
+                <h1>Sell Your Home for Up to <span class="highlight">$20,000 More</span></h1>
+                <p class="subtitle">Using 20 Simple Fixes Most Sellers Ignore.</p>
+                
+                <p class="description">
+                    Download the <strong>Smart Seller’s Checklist</strong> for free and discover simple, low-cost improvements that can significantly increase your property’s value — without expensive renovations.
+                </p>
+
+                <div class="benefits">
+                    <div class="benefit-item">
+                        <div class="icon">✨</div>
+                        <div>
+                            <strong>20 Quick-Fix Improvements</strong>
+                            <p>Easy, practical upgrades you can complete in a weekend.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">📈</div>
+                        <div>
+                            <strong>Increase Your Selling Price</strong>
+                            <p>Proven strategies to boost your property value by up to $20k.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">💡</div>
+                        <div>
+                            <strong>Save Thousands on Agent Fees</strong>
+                            <p>Learn how our digital, transparent model keeps more money in your pocket.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trust-badge">
+                    <p>Powered by <strong>Online Real Estate Agents (OREA)</strong></p>
+                    <p class="small-text">Sydney's disruptor in transparent, low-fee real estate.</p>
+                </div>
+            </main>
+        </div>
+
+        <!-- Right Side: Multi-Step Form -->
+        <div class="form-side">
+            <div class="form-container">
+                <h2>Get Your Free Checklist</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                
+                <form id="lead-form">
+                    <!-- Step 1: Location -->
+                    <div class="form-step active" id="step-1">
+                        <h3>Where is your property located?</h3>
+                        <p class="step-desc">Enter your suburb or postcode.</p>
+                        <div class="input-group">
+                            <input type="text" id="location" name="location" placeholder="e.g. Sydney 2000" required>
+                        </div>
+                        <button type="button" class="btn-next" onclick="nextStep(1)">Continue</button>
+                    </div>
+
+                    <!-- Step 2: Condition -->
+                    <div class="form-step" id="step-2">
+                        <h3>What is the current condition of your home?</h3>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="condition" value="Ready to sell" required>
+                                <span>Ready to sell</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="condition" value="Needs minor repairs">
+                                <span>Needs minor repairs</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="condition" value="Needs major renovations">
+                                <span>Needs major renovations</span>
+                            </label>
+                        </div>
+                        <div class="button-row">
+                            <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
+                            <button type="button" class="btn-next" onclick="nextStep(2)">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Contact Info -->
+                    <div class="form-step" id="step-3">
+                        <h3>Where should we send your Checklist?</h3>
+                        <div class="input-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="button-row">
+                            <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
+                            <button type="submit" class="btn-submit" id="submit-btn">Download My Free Checklist</button>
+                        </div>
+                        <p class="secure-text">🔒 Your information is 100% secure. We hate spam too.</p>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div class="form-step" id="form-success">
+                        <div class="success-icon">✓</div>
+                        <h3>You're all set!</h3>
+                        <p>We've just emailed your Smart Seller Checklist. Please check your inbox (and spam folder just in case).</p>
+                        <p class="small-text mt-2">Over the next few days, we'll also send you exclusive Off-Market insights and local market trends.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exit Intent Modal -->
+    <div class="modal-overlay" id="exit-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            <h2>Wait! Don't leave without your $20k Value-Boost Checklist...</h2>
+            <p>Homeowners who use our checklist sell their properties significantly faster. Get instant access now.</p>
+            <button class="btn-modal-cta" onclick="document.getElementById('exit-modal').classList.remove('active'); document.getElementById('location').focus();">Yes, I want the free checklist</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
