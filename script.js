@@ -93,7 +93,7 @@ if (checklistForm) {
 
         // Webhook endpoint (Google Apps Script URL will be placed here)
         // Format: https://script.google.com/macros/s/.../exec
-        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyLHpjTRE2cyspBNFvd4nfG_ua6j5We7MT7-X9lLL_sdyAZf76HZq2hon6YgvG46wZ3/exec';
+        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx3PjM2JYnnaLcEyaQG9INYjOzA8sWS4ZieSO5WHT8pqNyQXjctty0uzkZ3tPpqkb863w/exec';
 
         // Execute Real Fetch Request to GAS Backend
         fetch(WEBHOOK_URL, {
