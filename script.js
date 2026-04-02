@@ -52,41 +52,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Smooth scrolling for Anchor Links
+// Custom Premium Smooth Scroll with Easing (Cubic-Bezier 0.16, 1, 0.3, 1)
+function premiumScrollTo(targetElement, duration = 1200) {
+    const scrollContainer = document.querySelector('.scroll-container');
+    if (!scrollContainer || !targetElement) return;
+
+    const start = scrollContainer.scrollTop;
+    const target = targetElement.offsetTop;
+    const distance = target - start;
+    let startTime = null;
+
+    // Easing function matching the UI's fade-up (Quintic ease-out style)
+    function easeOutQuint(t) {
+        return 1 - Math.pow(1 - t, 5);
+    }
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        const ease = easeOutQuint(progress);
+        scrollContainer.scrollTo(0, start + (distance * ease));
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        } else {
+            // Re-enable snap after animation settles
+            setTimeout(() => {
+                scrollContainer.style.scrollSnapType = ''; 
+            }, 50);
+        }
+    }
+
+    // Temporarily disable snap to allow silky smooth custom animation
+    scrollContainer.style.scrollSnapType = 'none';
+    requestAnimationFrame(animation);
+}
+
+// Handle Anchor Links with Premium Easing
 document.querySelectorAll('.cta-scroll').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-
+        
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-
+        
         if (targetElement) {
-            const scrollContainer = document.querySelector('.scroll-container');
+            premiumScrollTo(targetElement, 1000);
             
-            // Temporarily disable CSS snap to allow the button's smooth scroll to glide softly
-            if (scrollContainer) {
-                scrollContainer.style.scrollSnapType = 'none';
-            }
-
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Re-enable strict snap after the glide finishes (~800ms)
-            setTimeout(() => {
-                if (scrollContainer) {
-                    scrollContainer.style.scrollSnapType = ''; // Restores CSS default (y mandatory)
-                }
-            }, 1000);
-            
-            // Focus on the first input ONLY if the target is the Lead Form
+            // Focus on input ONLY if targeting the form
             if (targetId === '#lead-form') {
                 setTimeout(() => {
                     const nameInput = document.getElementById('fullName');
-                    // Prevent default browser jump mechanics to keep scroll extremely smooth
                     if(nameInput) nameInput.focus({ preventScroll: true });
-                }, 800);
+                }, 1100);
             }
         }
     });
