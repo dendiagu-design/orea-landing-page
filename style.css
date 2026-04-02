@@ -19,16 +19,18 @@
 }
 
 html {
-    scroll-behavior: smooth;
     font-size: 16px;
+    height: 100%;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     color: var(--primary);
     background-color: var(--white);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    height: 100%;
+    overflow: hidden; /* Hide body scroll, container will scroll */
 }
 
 a {
@@ -46,11 +48,46 @@ img {
     display: block;
 }
 
+/* Scroll Snapping Container */
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for cleaner premium aesthetic (Optional but highly recommended) */
+.scroll-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+.scroll-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout Consistency */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px; /* One main consistent width */
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .text-center {
@@ -70,7 +107,7 @@ img {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1, h2, h3 {
     color: var(--primary);
     line-height: 1.2;
     font-weight: 700;
@@ -80,6 +117,16 @@ h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--secondary);
 }
 
 .highlight {
@@ -129,27 +176,54 @@ h2 {
     font-size: 1.125rem;
 }
 
-/* Navbar */
+/* Navbar / Logos */
 .site-header {
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--white);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }
 
-.site-header .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -1px;
+.header-container {
+    display: flex;
+}
+
+.header-logo {
+    height: 32px;
+    width: auto;
+    display: block;
+}
+
+.trust-logo {
+    height: 48px;
+    width: auto;
+    margin: 1rem auto 1.5rem auto;
+    display: inline-block;
+}
+
+.footer-logo {
+    height: 28px;
+    width: auto;
+    margin: 0 auto 1rem auto;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.footer-logo:hover {
+    opacity: 1;
 }
 
 /* 1. Hero Section */
 .hero-section {
-    padding: 6rem 0;
+    padding-top: 5rem;
+    background: var(--white);
+    justify-content: center;
 }
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: center;
 }
@@ -174,39 +248,51 @@ h2 {
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--secondary);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.micro-trust {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
 }
 
 .hero-image img {
     border-radius: 1rem;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
+    max-height: 70vh;
+    object-fit: cover;
 }
 
 /* 2. Benefits Section */
-.benefits-section {
-    padding: 6rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
 .benefits-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .benefit-card {
-    padding: 2.5rem 2rem;
+    padding: 2.5rem 1.5rem;
     background: var(--white);
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    /* Subtle hover effect (lift + shadow) */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
 .benefit-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.04);
 }
 
 .benefit-card .icon {
@@ -218,37 +304,35 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin: 0 auto 1.5rem;
 }
 
 .benefit-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin-bottom: 0.75rem;
 }
 
 .benefit-card p {
     color: var(--secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 /* 3. Lead Form Section */
 .form-section {
-    padding: 8rem 0;
-}
-
-.form-container-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
+    background: var(--white);
 }
 
 .form-card, .success-card {
-    background: var(--white);
+    background: var(--bg-gray);
     padding: 4rem;
     border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05);
     border: 1px solid var(--border);
     text-align: center;
     transition: opacity 0.3s ease;
+    max-width: 550px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .form-card h2 {
@@ -281,14 +365,13 @@ h2 {
     border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
-    background: var(--bg-light);
+    background: var(--white);
     transition: all 0.2s ease;
 }
 
 .input-group input:focus {
     outline: none;
     border-color: var(--border-focus);
-    background: var(--white);
     box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
 }
 
@@ -306,12 +389,6 @@ h2 {
     box-shadow: none;
 }
 
-.secure-text {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--light-text);
-}
-
 .success-icon {
     width: 80px;
     height: 80px;
@@ -325,33 +402,10 @@ h2 {
     margin: 0 auto 2rem;
 }
 
-.success-card h2 {
-    margin-bottom: 1rem;
-}
-
-.success-card p {
-    color: var(--secondary);
-    font-size: 1.1rem;
-}
-
-.success-card .small-text {
-    font-size: 0.9rem;
-    color: var(--light-text);
-}
-
 /* 4. Trust Section */
-.trust-section {
-    padding: 6rem 0;
-}
-
-.trust-container {
+.trust-content {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
-}
-
-.trust-section h2 {
-    margin-bottom: 2rem;
 }
 
 .trust-lead {
@@ -359,10 +413,6 @@ h2 {
     color: var(--secondary);
     margin-bottom: 3rem;
     line-height: 1.8;
-}
-
-.trust-lead strong {
-    color: var(--primary);
 }
 
 .trust-bullets {
@@ -387,20 +437,27 @@ h2 {
     display: inline-block;
 }
 
-/* 5. Closing Section */
-.closing-section {
-    padding: 8rem 0;
-    border-top: 1px solid var(--border);
+/* 5. Closing Section Wrapper */
+.closing-section-wrapper {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
 }
 
-.closing-section h2 {
-    font-size: 2.5rem;
+.content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closing-content h2 {
+    font-size: 2.8rem;
     max-width: 800px;
     margin: 0 auto 1.5rem;
 }
 
-.closing-section p {
-    font-size: 1.25rem;
+.closing-content p {
+    font-size: 1.2rem;
     color: var(--secondary);
     margin-bottom: 3rem;
 }
@@ -411,51 +468,71 @@ h2 {
     border-top: 1px solid var(--border);
     color: var(--light-text);
     font-size: 0.9rem;
+    width: 100%;
 }
 
-/* Responsive Design */
+.signature {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+/* Mobile Responsive */
 @media (max-width: 1024px) {
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
     .hero-container {
         gap: 2rem;
     }
 }
 
 @media (max-width: 768px) {
+    /* Disable snap scroll on mobile for better UX */
+    body {
+        overflow: auto; 
+    }
+    .scroll-container {
+        height: auto;
+        overflow-y: visible;
+        scroll-snap-type: none;
+    }
+    .snap-section {
+        min-height: auto;
+        scroll-snap-align: none;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .hero-section {
+        padding-top: 7rem; /* Account for absolute header */
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .hero-section {
-        padding: 4rem 0;
+        gap: 2.5rem;
+        text-align: left;
     }
     
     .hero-image {
-        order: -1; /* Puts image above text on mobile, very common */
+        order: -1; /* Image above text on mobile */
     }
     
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-    
-    .closing-section h2 {
+    h1, .hero-content h1 {
         font-size: 2.2rem;
+    }
+
+    h2, .closing-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
     }
     
     .benefits-grid {
-        gap: 1.5rem;
-    }
-    
-    .form-section, .closing-section, .trust-section {
-        padding: 5rem 0;
+        gap: 1rem;
     }
     
     .form-card, .success-card {
@@ -472,10 +549,6 @@ h2 {
 @media (max-width: 480px) {
     .benefits-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.2rem;
     }
     
     .btn-large {
