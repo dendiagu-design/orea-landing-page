@@ -40,7 +40,7 @@ img { max-width: 100%; height: auto; display: block; }
 .scroll-container::-webkit-scrollbar { width: 0; background: transparent; }
 .snap-section {
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal; /* Changes hard brake to a smooth glide settling */
     min-height: 100vh;
     position: relative;
     display: flex;
