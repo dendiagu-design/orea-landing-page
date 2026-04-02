@@ -61,10 +61,24 @@ document.querySelectorAll('.cta-scroll').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
+            const scrollContainer = document.querySelector('.scroll-container');
+            
+            // Temporarily disable CSS snap to allow the button's smooth scroll to glide softly
+            if (scrollContainer) {
+                scrollContainer.style.scrollSnapType = 'none';
+            }
+
             targetElement.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            // Re-enable strict snap after the glide finishes (~800ms)
+            setTimeout(() => {
+                if (scrollContainer) {
+                    scrollContainer.style.scrollSnapType = ''; // Restores CSS default (y mandatory)
+                }
+            }, 1000);
             
             // Focus on the first input ONLY if the target is the Lead Form
             if (targetId === '#lead-form') {
