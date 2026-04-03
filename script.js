@@ -123,7 +123,7 @@ if (checklistForm) {
 
         // Disable button to prevent double submit
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Sending Request...';
+        submitBtn.innerText = 'Mengirim Permintaan...';
 
         // Collect data
         const formData = new FormData(this);
@@ -171,7 +171,7 @@ if (checklistForm) {
 
         }).catch(err => {
             console.error("Submission error:", err);
-            alert("Something went wrong. Please try again later.");
+            alert("Terjadi kesalahan. Silakan coba lagi nanti.");
             submitBtn.disabled = false;
             submitBtn.innerText = originalText;
         });
