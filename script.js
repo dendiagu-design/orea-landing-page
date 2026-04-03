@@ -34,79 +34,60 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
     }, 100);
 
-    // Mobile Sticky CTA hide logic when close to form
+    // Mobile Sticky CTA logic (Show after Hero, Hide at Form)
+    const heroSection = document.getElementById('hero');
     const formSection = document.getElementById('lead-form');
     const stickyCta = document.getElementById('sticky-cta');
 
-    if (formSection && stickyCta) {
-        const ctaObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    stickyCta.style.transform = 'translateY(150%)'; // hide off screen
-                } else {
-                    stickyCta.style.transform = 'translateY(0)'; // show it
-                }
-            });
+    if (heroSection && formSection && stickyCta) {
+        let heroVisible = true;
+        let formVisible = false;
+
+        const updateCTA = () => {
+            if (!heroVisible && !formVisible) {
+                stickyCta.style.transform = 'translateY(0)'; // show
+            } else {
+                stickyCta.style.transform = 'translateY(150%)'; // hide
+            }
+        };
+
+        const heroObs = new IntersectionObserver(([entry]) => {
+            heroVisible = entry.isIntersecting;
+            updateCTA();
         }, { threshold: 0.1 });
-        ctaObserver.observe(formSection);
+
+        const formObs = new IntersectionObserver(([entry]) => {
+            formVisible = entry.isIntersecting;
+            updateCTA();
+        }, { threshold: 0.1 });
+
+        heroObs.observe(heroSection);
+        formObs.observe(formSection);
     }
 });
 
-// Custom Premium Smooth Scroll with Easing (Cubic-Bezier 0.16, 1, 0.3, 1)
-function premiumScrollTo(targetElement, duration = 1200) {
-    const scrollContainer = document.querySelector('.scroll-container');
-    if (!scrollContainer || !targetElement) return;
-
-    const start = scrollContainer.scrollTop;
-    const target = targetElement.offsetTop;
-    const distance = target - start;
-    let startTime = null;
-
-    // Easing function matching the UI's fade-up (Quintic ease-out style)
-    function easeOutQuint(t) {
-        return 1 - Math.pow(1 - t, 5);
-    }
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        
-        const ease = easeOutQuint(progress);
-        scrollContainer.scrollTo(0, start + (distance * ease));
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-        } else {
-            // Re-enable snap after animation settles
-            setTimeout(() => {
-                scrollContainer.style.scrollSnapType = ''; 
-            }, 50);
-        }
-    }
-
-    // Temporarily disable snap to allow silky smooth custom animation
-    scrollContainer.style.scrollSnapType = 'none';
-    requestAnimationFrame(animation);
-}
-
-// Handle Anchor Links with Premium Easing
+// Handle Anchor Links (Native Smooth Scroll)
 document.querySelectorAll('.cta-scroll').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-            premiumScrollTo(targetElement, 1000);
+            // Check if we are in the scroll container
+            const scrollContainer = document.querySelector('.scroll-container');
             
+            if (scrollContainer && window.innerWidth > 768) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+            // else: let the default browser behavior handle it (works with html { scroll-behavior: smooth })
+
             // Focus on input ONLY if targeting the form
             if (targetId === '#lead-form') {
                 setTimeout(() => {
                     const nameInput = document.getElementById('fullName');
                     if(nameInput) nameInput.focus({ preventScroll: true });
-                }, 1100);
+                }, 800);
             }
         }
     });
