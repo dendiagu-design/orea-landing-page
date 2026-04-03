@@ -137,6 +137,18 @@ h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
 }
 .offer-label { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; letter-spacing: 1px; }
 
+/* Hero Badge Enhancements */
+.trust-badge-mini {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+.trust-badge-mini .dots { color: var(--success); font-weight: 900; letter-spacing: -2px; margin-right: 5px; }
+
 /* 2. Problem Section */
 .problem-section { padding: 8rem 0; } /* More vertical space */
 .section-header { margin-bottom: 5rem; }
@@ -182,13 +194,31 @@ h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
 .success-card { padding: 3rem; text-align: center; }
 .success-icon { width: 80px; height: 80px; background: #d1fae5; color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1.5rem; }
 
-/* 5. Trust Section */
-.trust-section { padding: 5rem 0; background: var(--white); }
-.testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 2rem auto 0; }
-.testimonial-card { padding: 2.5rem; background: var(--bg-gray); border-radius: 1rem; text-align: left; }
-.stars { font-size: 1.2rem; margin-bottom: 1rem; }
-.quote { font-size: 1.1rem; font-style: italic; color: var(--secondary); margin-bottom: 1.5rem; }
-.author { font-weight: 700; color: var(--primary); }
+/* 5. Trust Section (Testimonials) */
+.trust-section { padding: 8rem 0; background: var(--white); }
+.testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 4rem; }
+.testimonial-card { background: var(--bg-gray); padding: 3rem; border-radius: 1.5rem; position: relative; }
+.testimonial-card::before { content: '"'; position: absolute; top: 1rem; left: 1.5rem; font-size: 4rem; color: var(--border); font-family: serif; line-height: 1; }
+.testimonial-quote { font-style: italic; color: var(--primary); margin-bottom: 2rem; font-size: 1.1rem; position: relative; z-index: 1; }
+.testimonial-author { display: flex; align-items: center; gap: 1rem; }
+.author-info h4 { font-size: 1rem; font-weight: 800; color: var(--primary); }
+.author-info p { font-size: 0.85rem; color: var(--secondary); }
+
+/* Why OREA Block */
+.credibility-block {
+    background: var(--primary);
+    color: var(--white);
+    padding: 5rem;
+    border-radius: 2rem;
+    margin: 6rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+    text-align: left;
+}
+.credibility-block h2 { color: var(--white); margin-bottom: 1rem; }
+.credibility-text p { opacity: 0.85; margin-bottom: 1.5rem; font-size: 1.1rem; }
 
 /* 6. Footer (Closing) */
 .closing-section-wrapper { padding: 5rem 0 2rem; }
