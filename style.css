@@ -294,7 +294,7 @@ h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
 
 @media (max-width: 1024px) {
     .problem-grid { grid-template-columns: 1fr 1fr; }
-    .hero-container, .solution-grid, .form-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-container, .solution-grid, .form-wrapper, .credibility-block { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-image { order: -1; }
     .solution-image { display: none; } /* Hide big block on mobile to save space */
 }
@@ -307,9 +307,10 @@ h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
     .scroll-container { height: auto; overflow-y: visible; scroll-snap-type: none; }
     .snap-section { min-height: auto; scroll-snap-align: none; padding: var(--section-padding) 0; }
     .hero-section { padding-top: 5rem; }
-    h1 { font-size: 2.2rem; }
+    h1 { font-size: 2.22rem; }
     h2 { font-size: 1.8rem; }
     .problem-grid, .testimonial-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .credibility-block { padding: 2rem 1.5rem; gap: 1.5rem; }
     .form-wrapper { padding: 3rem 1.5rem; }
     .btn { width: 100%; padding: 1rem 1.5rem; } /* Consistent full-width buttons on mobile */
 }
